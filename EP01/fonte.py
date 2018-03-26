@@ -18,7 +18,7 @@ def vel (ds, dt):
 def a (dv, dt):
     return dv/dt
 
-# retorna s(t)
+# retorna s(t), em MU
 def eq_horaria(s_0, t, vel):
     return t*vel
 
@@ -26,9 +26,9 @@ def eq_horaria(s_0, t, vel):
 
 # recebe uma lista de str; troca virgulas por pontos
 def format_to_float(arr):
-    return [s.replace(',', '.') for s in arr]
+    return np.array([s.replace(',', '.') for s in arr])
 
-# calcula velocidade media, printa e plota
+# calcula velocidade media, printa e plota dados teóricos (previsão)
 def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
     subdataset = format_to_float(dataset.iloc[coord_x, coord_y[0]:coord_y[1]].values)
     timeline = [float(i) for i in subdataset]
@@ -40,23 +40,53 @@ def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
     plt.plot(time_plot, positions_plot, color = plot_color)
 
 # adiciona informacoes ao plot e salva em um arquivo
-def setup_and_save_plot(legend, title, filename, xlabel="Tempo", ylabel="Espaço"):
-    plt.legend(legend, loc='upper left')
+# def setup_and_save_plot(legend, title, filename, xlabel="Tempo", ylabel="Espaço"):
+#     plt.legend(legend, loc='upper left')
+#     plt.title(title)
+#     plt.xlabel(xlabel)
+#     plt.ylabel(ylabel)
+#     # plt.show()
+#     plt.savefig(filename)
+
+# MU
+
+# dataset = pd.read_csv('Movimento Uniforme.csv')
+
+# calc_vel_and_plot(dataset, 4, [2,5], 'Lucas - Pareado 1', 'blue')
+# calc_vel_and_plot(dataset, 8, [2,5], 'Lucas - Pareado 2', 'red')
+# calc_vel_and_plot(dataset, 27, [2,8], 'Lucas - Alternado', 'green')
+# setup_and_save_plot(['Pareado 1', 'Pareado 2', 'Alternado'],
+#     "Lucas - Teórico",
+#     "MU-Plot-Lucas.png")
+
+# MUV
+
+
+dataset = pd.read_csv('/Users/victor2142/mac0209/EP01/MUV.csv')
+
+# retorna s(t), em MUV
+def eq_horariaMUV(s_0, t, acel):
+    return (eq_horaria(s_0, t, acel*t) + ((t^2)/2) * acel)
+
+def calc_vel(dataset, coord_x, coord_y, name, plot_color):
+    subdataset = format_to_float(dataset.iloc[coord_x, coord_y[0]:coord_y[1]].values)
+    timeline = [float(i) for i in subdataset]
+    delta_t = np.sum(timeline)
+    velocity = vel(delta_s, delta_t)
+    aceleration = a (velocity, delta_t)
+    print(("Aceleration %s: %s m/s^2") % (name ,aceleration))
+    positions_plot = [eq_horariaMUV(s[0], i, aceleration) for i in range(20)]
+    plt.plot(time_plot, positions_plot, color=plot_color)
+
+calc_vel(dataset, 4, [2, 5], 'Victor - Pareado 1', 'blue')
+
+
+def setup_and_save_plot(title, filename, xlabel="Tempo", ylabel="Espaço"):
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     # plt.show()
     plt.savefig(filename)
 
-# MU
 
-dataset = pd.read_csv('Movimento Uniforme.csv')
-
-calc_vel_and_plot(dataset, 4, [2,5], 'Lucas - Pareado 1', 'blue')
-calc_vel_and_plot(dataset, 8, [2,5], 'Lucas - Pareado 2', 'red')
-calc_vel_and_plot(dataset, 27, [2,8], 'Lucas - Alternado', 'green')
-setup_and_save_plot(['Pareado 1', 'Pareado 2', 'Alternado'],
-    "Lucas",
-    "MU-Plot-Lucas.png")
-
-# MUV
+setup_and_save_plot('VictorAcelerado', "MUV-Plot-Victor.png")
