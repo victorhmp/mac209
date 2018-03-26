@@ -25,9 +25,16 @@ Kaique 2,Ponto,10m,20m,30m,,,
 ,Crono 2,"10,68","5,12","2,94",,,
 ,Media,"10,66","5,08","2,98",,,
 Cronômetros Intercalados,,,,,,,
-Victor,Ponto,5m,10m,15m,20m,25m,30m
+Victor,Ponto,0m a 5m,5m a 10m,10m a 15m,15m a 20m,20m a 25m,25m a 30m
+,Tempo,"5,51","5,33","3,64","2,36","2,28","1,86"
+Yurick,Ponto,0m a 5m,5m a 10m,10m a 15m,15m a 20m,20m a 25m,25m a 30m
+,Tempo,"6,14","5,09",4,"2,71","2,3","0,99"
+Kaique,Ponto,0m a 5m,5m a 10m,10m a 15m,15m a 20m,20m a 25m,25m a 30m
+,Tempo,"6,43","5,96","3,99","2,64","2,12","1,68"
+,,,,,,,
+Victor,Ponto,0m a 5m,0m a 10m,5m a 15m,10m a 20m,15m a 25m,20m a 30m
 ,Tempo,"5,51","10,84","8,97",6,"4,64","4,14"
-Yurick,Ponto,5m,10m,15m,20m,25m,30m
+Yurick,Ponto,0m a 5m,0m a 10m,5m a 15m,10m a 20m,15m a 25m,20m a 30m
 ,Tempo,"6,14","11,23","9,09","6,71","5,01","3,29"
-Kaique,Ponto,5m,10m,15m,20m,25m,30m
+Kaique,Ponto,0m a 5m,0m a 10m,5m a 15m,10m a 20m,15m a 25m,20m a 30m
 ,Tempo,"6,43","12,39","9,95","6,63","4,76","3,8"
