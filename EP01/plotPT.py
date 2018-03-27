@@ -14,6 +14,7 @@ str = sys.argv[1]
 #titulo do grafico
 #exemplo Kaique
 title = sys.argv[2]
+image = sys.argv[3]
 
 dataset = pd.read_csv(str, delimiter=';')
 subdataset_time = format_to_float(dataset.iloc[0:, 0].values)
@@ -36,5 +37,5 @@ plt.plot(time, at, color = 'green')
 plt.title("Acelerometro - " + title)
 plt.xlabel("Tempo")
 plt.ylabel("Aceleracao")
-plt.savefig(title + ".png")
+plt.savefig(image + ".png")
 #plt.show()
