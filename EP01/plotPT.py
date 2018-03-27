@@ -2,8 +2,9 @@ import numpy as numpy
 import matplotlib.pyplot as plt
 import pandas as pd
 import sys
-#exemplo de execucao: python plotPT.py PhysicsToolBoxData/MUKaique1.csv KaiqueMU
-#o programa ira plotar o arquivo MUKaique1.csv e salvar uma imagem KaiqueMU.png
+#exemplo de execucao: python plotPT.py PhysicsToolBoxData/MUKaique1.csv KaiqueMU KaiqueMUImage
+#o programa ira plotar o arquivo MUKaique1.csv, com um grafico de titulo "KaiqueMU"e salvar 
+# uma imagem KaiqueMUImage.png
 # recebe uma lista de str; troca virgulas por pontos
 def format_to_float(arr):
     return [s.replace(',', '.') for s in arr]
