@@ -1,17 +1,21 @@
 import numpy as numpy
 import matplotlib.pyplot as plt
 import pandas as pd
-
+import sys
+#exemplo de execucao: python plotPT.py PhysicsToolBoxData/MUKaique1.csv KaiqueMU
+#o programa ira plotar o arquivo MUKaique1.csv e salvar uma imagem KaiqueMU.png
 # recebe uma lista de str; troca virgulas por pontos
 def format_to_float(arr):
     return [s.replace(',', '.') for s in arr]
 
-#nome do arquivo de entrada e nome do arquivo de saida
-str = " nome "
+#caminho do arquivo csv a ser plotado
+#exemplo PhysicsToolBoxData/MUKaique1.csv
+str = sys.argv[1]
 #titulo do grafico
-title = "  "
+#exemplo Kaique
+title = sys.argv[2]
 
-dataset = pd.read_csv('PhysicsToolBoxData/'+str+'.csv', delimiter=';')
+dataset = pd.read_csv(str, delimiter=';')
 subdataset_time = format_to_float(dataset.iloc[0:, 0].values)
 subdataset_ax = format_to_float(dataset.iloc[0:, 1].values)
 subdataset_ay = format_to_float(dataset.iloc[0:, 2].values)
@@ -32,5 +36,5 @@ plt.plot(time, at, color = 'green')
 plt.title("Acelerometro - " + title)
 plt.xlabel("Tempo")
 plt.ylabel("Aceleracao")
-plt.savefig(str + ".png")
+plt.savefig(title + ".png")
 #plt.show()
