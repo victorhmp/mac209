@@ -28,7 +28,7 @@ def eq_horaria(s_0, t, vel):
 def format_to_float(arr):
     return [s.replace(',', '.') for s in arr]
 
-# calcula velocidade media, printa e plota dados teóricos (previsão)
+# calcula velocidade media, printa e plota dados teoricos (previsao)
 def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
     subdataset = format_to_float(dataset.iloc[coord_x, coord_y[0]:coord_y[1]].values)
     timeline = [float(i) for i in subdataset]
@@ -37,15 +37,17 @@ def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
     print(("Vel %s: %s m/s") % (name ,velocity))
 
     Y = [10, 20, 30]
-    X = dataset.iloc[6, 2:5].values
-    X = format_to_float(X)
+    Y_2 = [5, 10, 15, 20, 25, 30]
+    X = timeline
     for index, value in enumerate(X):
         if (index == 0):
             continue
         else:
-            X[index] = X[index-1] + X[index]
-
-    print(X)
+            X[index] = X[index-1] + value
+    try:
+        plt.plot(X, Y, '.', color=plot_color)
+    except ValueError:
+        plt.plot(X, Y_2, '.', color=plot_color)
 
     # plt.scatter(X, Y)
 
@@ -53,7 +55,7 @@ def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
     plt.plot(time_plot, positions_plot, color = plot_color)
 
 # adiciona informacoes ao plot e salva em um arquivo
-def setup_and_save_plot(legend, title, filename, xlabel="Tempo", ylabel="Espaço"):
+def setup_and_save_plot(legend, title, filename, xlabel="Tempo", ylabel="Espaco"):
     plt.legend(legend, loc='upper left')
     plt.title(title)
     plt.xlabel(xlabel)
@@ -66,6 +68,6 @@ for index,name in enumerate(names):
     calc_vel_and_plot(dataset, (4 + index*8), [2, 5], '{} - Pareado 1'.format(name), 'blue')
     calc_vel_and_plot(dataset, (8 + index*8), [2, 5], '{} - Pareado 2'.format(name), 'red')
     calc_vel_and_plot(dataset, (27 + index*2), [2, 8], '{} - Alternado'.format(name), 'green')
-    setup_and_save_plot(['Pareado 1', 'Pareado 2', 'Alternado'],
-                        "{} - Teórico".format(name),
+    setup_and_save_plot(['Valores exatos - Pareado 1','Pareado 1', 'Valores exatos - Pareado 2', 'Pareado 2', 'Valores exatos - Alternado', 'Alternado'],
+                        "{} - Teorico".format(name),
                         "MU-Plot-{}.png".format(name))
