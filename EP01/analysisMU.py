@@ -68,6 +68,7 @@ for index,name in enumerate(names):
     calc_vel_and_plot(dataset, (4 + index*8), [2, 5], '{} - Pareado 1'.format(name), 'blue')
     calc_vel_and_plot(dataset, (8 + index*8), [2, 5], '{} - Pareado 2'.format(name), 'red')
     calc_vel_and_plot(dataset, (27 + index*2), [2, 8], '{} - Alternado'.format(name), 'green')
-    setup_and_save_plot(['Valores exatos - Pareado 1','Pareado 1', 'Valores exatos - Pareado 2', 'Pareado 2', 'Valores exatos - Alternado', 'Alternado'],
+    setup_and_save_plot(['Valores experimentais - Pareado 1','Pareado 1', 'Valores experimentais - Pareado 2', 'Pareado 2', 
+                        'Valores experimentais - Alternado', 'Alternado'],
                         "{} - Teorico".format(name),
                         "MU-Plot-{}.png".format(name))
