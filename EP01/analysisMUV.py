@@ -4,6 +4,8 @@ import pandas as pd
 
 dataset = pd.read_csv('MUV.csv')
 
+names = ['Victor', 'Yurick', 'Kaique']
+
 # CONSTANTES E MAGIC NUMBERS
 
 s = [0, 5, 10, 15, 20, 25, 30]
@@ -13,20 +15,14 @@ time_plot = [i for i in range(20)]
 # FUNCOES - CALCULOS
 
 # velocidade
-
-
 def vel(ds, dt):
     return ds/dt
 
 # aceleracao
-
-
 def a(dv, dt):
     return dv/dt
 
 # retorna s(t), em MU
-
-
 def eq_horaria(s_0, t, vel):
     return t*vel
 
@@ -51,15 +47,18 @@ def calc_vel(dataset, coord_x, coord_y, name, plot_color):
     plt.plot(time_plot, positions_plot, color=plot_color)
 
 
-calc_vel(dataset, 4, [2, 5], 'Victor - Pareado 1', 'blue')
-
-
-def setup_and_save_plot(title, filename, xlabel="Tempo", ylabel="Espaço"):
+def setup_and_save_plot(legend, title, filename, xlabel="Tempo", ylabel="Espaço"):
+    plt.legend(legend, loc='upper left')
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     # plt.show()
     plt.savefig(filename)
+    plt.clf()
 
-
-setup_and_save_plot('VictorAcelerado', "MUV-Plot-Victor.png")
+for index,name in enumerate(names):
+    calc_vel(dataset, (4 + index*8), [2, 5], '{} - Pareado 1'.format(name), 'blue')
+    calc_vel(dataset, (8 + index*8), [2,5], '{} - Pareado 2'.format(name), 'red')
+    calc_vel(dataset, (27 + index*2), [2, 8], '{} - Alternado'.format(name), 'green')
+    
+    setup_and_save_plot(['Pareado 1', 'Pareado 2', 'Alternado'], "{} - Teórico".format(name),"MUV-Plot-{}.png".format(name))
