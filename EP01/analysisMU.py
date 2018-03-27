@@ -45,7 +45,7 @@ def setup_and_save_plot(legend, title, filename, xlabel="Tempo", ylabel="Espaço
     plt.savefig(filename)
     plt.clf()
 
-dataset = pd.read_csv('Movimento Uniforme.csv')
+dataset = pd.read_csv('MU.csv')
 
 names = ['Lucas', 'Ricardo', 'Kaique']
 
