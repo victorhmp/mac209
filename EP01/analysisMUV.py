@@ -42,12 +42,13 @@ def calc_vel(dataset, coord_x, coord_y, name, plot_color):
     delta_t = np.sum(timeline)
     velocity = vel(delta_s, delta_t)
     aceleration = a(velocity, delta_t)
-    print(("Aceleration %s: %s m/s^2") % (name, aceleration))
+    print(("Aceleration %s: %s m/s^2") % (name, aceleration))    
+
     positions_plot = [eq_horariaMUV(s[0], i, aceleration) for i in range(20)]
     plt.plot(time_plot, positions_plot, color=plot_color)
 
 
-def setup_and_save_plot(legend, title, filename, xlabel="Tempo", ylabel="Espaço"):
+def setup_and_save_plot(legend, title, filename, xlabel="Tempo (s)", ylabel="Espaço (m)"):
     plt.legend(legend, loc='upper left')
     plt.title(title)
     plt.xlabel(xlabel)
@@ -61,4 +62,4 @@ for index,name in enumerate(names):
     calc_vel(dataset, (8 + index*8), [2,5], '{} - Pareado 2'.format(name), 'red')
     calc_vel(dataset, (27 + index*2), [2, 8], '{} - Alternado'.format(name), 'green')
     
-    setup_and_save_plot(['Pareado 1', 'Pareado 2', 'Alternado'], "{} - Teórico".format(name),"MUV-Plot-{}.png".format(name))
+    setup_and_save_plot(['Pareado 1', 'Pareado 2', 'Alternado'], "{} - MUV: Experimental X Teórico".format(name),"MUV-Plot-{}.png".format(name))
