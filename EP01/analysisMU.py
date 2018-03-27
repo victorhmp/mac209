@@ -26,7 +26,7 @@ def eq_horaria(s_0, t, vel):
 
 # recebe uma lista de str; troca virgulas por pontos
 def format_to_float(arr):
-    return np.array([s.replace(',', '.') for s in arr])
+    return [s.replace(',', '.') for s in arr]
 
 # calcula velocidade media, printa e plota dados teóricos (previsão)
 def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
@@ -35,6 +35,19 @@ def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
     delta_t = np.sum(timeline)
     velocity = vel(delta_s, delta_t)
     print(("Vel %s: %s m/s") % (name ,velocity))
+
+    Y = [10, 20, 30]
+    X = dataset.iloc[6, 2:5].values
+    X = format_to_float(X)
+    for index, value in enumerate(X):
+        if (index == 0):
+            continue
+        else:
+            X[index] = X[index-1] + X[index]
+
+    print(X)
+
+    # plt.scatter(X, Y)
 
     positions_plot = [eq_horaria(s[0], i, velocity) for i in range(20)] # s[0] comes from constants
     plt.plot(time_plot, positions_plot, color = plot_color)
