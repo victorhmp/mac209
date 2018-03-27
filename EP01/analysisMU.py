@@ -55,7 +55,7 @@ def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
     plt.plot(time_plot, positions_plot, color = plot_color)
 
 # adiciona informacoes ao plot e salva em um arquivo
-def setup_and_save_plot(legend, title, filename, xlabel="Tempo", ylabel="Espaco"):
+def setup_and_save_plot(legend, title, filename, xlabel="Tempo (s)", ylabel="Espaco (m)"):
     plt.legend(legend, loc='upper left')
     plt.title(title)
     plt.xlabel(xlabel)
