@@ -2,6 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
+dataset = pd.read_csv('MU.csv')
+
+names = ['Lucas', 'Ricardo', 'Kaique']
+
 # CONSTANTES E MAGIC NUMBERS
 
 s = [0, 5, 10, 15, 20, 25, 30]
@@ -44,10 +48,6 @@ def setup_and_save_plot(legend, title, filename, xlabel="Tempo", ylabel="Espaço
     # plt.show()
     plt.savefig(filename)
     plt.clf()
-
-dataset = pd.read_csv('MU.csv')
-
-names = ['Lucas', 'Ricardo', 'Kaique']
 
 for index,name in enumerate(names):
     calc_vel_and_plot(dataset, (4 + index*8), [2, 5], '{} - Pareado 1'.format(name), 'blue')

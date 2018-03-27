@@ -2,22 +2,24 @@ import numpy as numpy
 import matplotlib.pyplot as plt
 import pandas as pd
 import sys
-#exemplo de execucao: python plotPT.py PhysicsToolBoxData/MUKaique1.csv KaiqueMU KaiqueMUImage
-#o programa ira plotar o arquivo MUKaique1.csv, com um grafico de titulo "KaiqueMU"e salvar 
+
+# exemplo de execucao: python plotPT.py PhysicsToolBoxData/MUKaique1.csv KaiqueMU KaiqueMUImage
+# o programa ira plotar o arquivo MUKaique1.csv, com um grafico de titulo "KaiqueMU"e salvar 
 # uma imagem KaiqueMUImage.png
+
+
 # recebe uma lista de str; troca virgulas por pontos
 def format_to_float(arr):
     return [s.replace(',', '.') for s in arr]
 
-#caminho do arquivo csv a ser plotado
-#exemplo PhysicsToolBoxData/MUKaique1.csv
-str = sys.argv[1]
-#titulo do grafico
-#exemplo Kaique
+# caminho do arquivo csv a ser plotado
+csvPath = sys.argv[1]
+
+# titulo do grafico
 title = sys.argv[2]
 image = sys.argv[3]
 
-dataset = pd.read_csv(str, delimiter=';')
+dataset = pd.read_csv(csvPath, delimiter=';')
 subdataset_time = format_to_float(dataset.iloc[0:, 0].values)
 subdataset_ax = format_to_float(dataset.iloc[0:, 1].values)
 subdataset_ay = format_to_float(dataset.iloc[0:, 2].values)
