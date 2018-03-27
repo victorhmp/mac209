@@ -70,5 +70,5 @@ for index,name in enumerate(names):
     calc_vel_and_plot(dataset, (27 + index*2), [2, 8], '{} - Alternado'.format(name), 'green')
     setup_and_save_plot(['Valores experimentais - Pareado 1','Pareado 1', 'Valores experimentais - Pareado 2', 'Pareado 2', 
                         'Valores experimentais - Alternado', 'Alternado'],
-                        "{} - Teorico".format(name),
+                        "{} - MU: Experimental x Teorico".format(name),
                         "MU-Plot-{}.png".format(name))
