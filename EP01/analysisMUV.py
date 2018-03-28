@@ -36,6 +36,12 @@ def eq_horariaMUV(s_0, t, acel):
 def format_to_float(arr):
     return np.array([s.replace(',', '.') for s in arr])
 
+# printa s(t) para cada t tal que 0s <= t <= 19s
+def print_s_t(positions_plot):
+    print("[", positions_plot[0], end="")
+    for i in range (1,20):
+        print (", ", positions_plot[i], end="")
+    print("]")
 
 def calc_vel(dataset, coord_x, coord_y, name, plot_color):
     subdataset = format_to_float(
@@ -63,6 +69,7 @@ def calc_vel(dataset, coord_x, coord_y, name, plot_color):
 
     positions_plot = [eq_horariaMUV(s[0], i, aceleration) for i in range(20)]
     plt.plot(time_plot, positions_plot, color=plot_color)
+    #print_s_t(positions_plot)
 
 
 def setup_and_save_plot(legend, title, filename, xlabel="Tempo (s)", ylabel="Espaço (m)"):
