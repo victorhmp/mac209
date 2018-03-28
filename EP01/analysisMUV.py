@@ -6,6 +6,8 @@ dataset = pd.read_csv('MUV.csv')
 
 names = ['Victor', 'Yurick', 'Kaique']
 
+cheat = [0]
+
 # CONSTANTES E MAGIC NUMBERS
 
 s = [0, 5, 10, 15, 20, 25, 30]
@@ -44,6 +46,8 @@ def calc_vel(dataset, coord_x, coord_y, name, plot_color):
     aceleration = a(velocity, delta_t)
     print(("Aceleration %s: %s m/s^2") % (name, aceleration))
 
+    cheat[0] = aceleration
+
     Y = [10, 20, 30]
     Y_2 = [5, 10, 15, 20, 25, 30]
     X = timeline
@@ -70,6 +74,14 @@ def setup_and_save_plot(legend, title, filename, xlabel="Tempo (s)", ylabel="Esp
     plt.savefig(filename)
     plt.clf()
 
+def plot_vel(title, xlabel="Tempo (s)", ylabel="Velocidade (m/s)"):
+    velocity_plot = [cheat[0] * t for t in range(20)]
+    plt.plot(time_plot, velocity_plot, color='purple')
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.show()
+
 for index,name in enumerate(names):
     calc_vel(dataset, (4 + index*8),
                       [2, 5], '{} - Pareado 1'.format(name), 'blue')
@@ -81,3 +93,5 @@ for index,name in enumerate(names):
                          'Valores experimentais - Alternado', 'Alternado'],
                         "{} - MUV: Experimental x Teorico".format(name),
                         "MUV-Plot-{}.png".format(name))
+    plot_vel("{} - Velocidade X Tempo".format(name))
+    
