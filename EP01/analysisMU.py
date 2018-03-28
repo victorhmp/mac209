@@ -28,6 +28,13 @@ def eq_horaria(s_0, t, vel):
 def format_to_float(arr):
     return [s.replace(',', '.') for s in arr]
 
+# printa s(t) para cada t tal que 0s <= t <= 19s
+def print_s_t(positions_plot):
+    print("[", positions_plot[0], end="")
+    for i in range (1,20):
+        print (", ", positions_plot[i], end="")
+    print("]")
+
 # calcula velocidade media, printa e plota dados teoricos (previsao)
 def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
     subdataset = format_to_float(dataset.iloc[coord_x, coord_y[0]:coord_y[1]].values)
@@ -51,8 +58,9 @@ def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
 
     # plt.scatter(X, Y)
 
-    positions_plot = [eq_horaria(s[0], i, velocity) for i in range(20)] # s[0] comes from constants
+    positions_plot = [eq_horaria(s[0], i, velocity) for i in range(20)] # s[0] comes from constants    
     plt.plot(time_plot, positions_plot, color = plot_color)
+    #print_s_t(positions_plot) #para printar s(t) apenas descomentar
 
 # adiciona informacoes ao plot e salva em um arquivo
 def setup_and_save_plot(legend, title, filename, xlabel="Tempo (s)", ylabel="Espaco (m)"):
