@@ -42,7 +42,20 @@ def calc_vel(dataset, coord_x, coord_y, name, plot_color):
     delta_t = np.sum(timeline)
     velocity = vel(delta_s, delta_t)
     aceleration = a(velocity, delta_t)
-    print(("Aceleration %s: %s m/s^2") % (name, aceleration))    
+    print(("Aceleration %s: %s m/s^2") % (name, aceleration))
+
+    Y = [10, 20, 30]
+    Y_2 = [5, 10, 15, 20, 25, 30]
+    X = timeline
+    for index, value in enumerate(X):
+        if (index == 0):
+            continue
+        else:
+            X[index] = X[index-1] + value
+    try:
+        plt.plot(X, Y, '.', color=plot_color)
+    except ValueError:
+        plt.plot(X, Y_2, '.', color=plot_color)
 
     positions_plot = [eq_horariaMUV(s[0], i, aceleration) for i in range(20)]
     plt.plot(time_plot, positions_plot, color=plot_color)
@@ -58,8 +71,13 @@ def setup_and_save_plot(legend, title, filename, xlabel="Tempo (s)", ylabel="Esp
     plt.clf()
 
 for index,name in enumerate(names):
-    calc_vel(dataset, (4 + index*8), [2, 5], '{} - Pareado 1'.format(name), 'blue')
-    calc_vel(dataset, (8 + index*8), [2,5], '{} - Pareado 2'.format(name), 'red')
-    calc_vel(dataset, (27 + index*2), [2, 8], '{} - Alternado'.format(name), 'green')
-    
-    setup_and_save_plot(['Pareado 1', 'Pareado 2', 'Alternado'], "{} - MUV: Experimental X Teórico".format(name),"MUV-Plot-{}.png".format(name))
+    calc_vel(dataset, (4 + index*8),
+                      [2, 5], '{} - Pareado 1'.format(name), 'blue')
+    calc_vel(dataset, (8 + index*8),
+                      [2, 5], '{} - Pareado 2'.format(name), 'red')
+    calc_vel(dataset, (27 + index*2),
+                      [2, 8], '{} - Alternado'.format(name), 'green')
+    setup_and_save_plot(['Valores experimentais - Pareado 1', 'Pareado 1', 'Valores experimentais - Pareado 2', 'Pareado 2',
+                         'Valores experimentais - Alternado', 'Alternado'],
+                        "{} - MUV: Experimental x Teorico".format(name),
+                        "MUV-Plot-{}.png".format(name))
