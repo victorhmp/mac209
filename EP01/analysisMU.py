@@ -9,6 +9,8 @@ names = ['Lucas', 'Ricardo', 'Kaique']
 # CONSTANTES E MAGIC NUMBERS
 
 s = [0, 5, 10, 15, 20, 25, 30]
+s_pareado = [10, 20, 30]
+s_alternado = [5, 10, 15, 20, 25, 30]
 delta_s = 30
 time_plot = [i for i in range(20)]
 
@@ -21,6 +23,9 @@ def vel (ds, dt):
 # retorna s(t), em MU
 def eq_horaria(s_0, t, vel):
     return t*vel
+
+def eq_horario_tempo(s_0, s, vel):
+    return (s-s_0)/vel
 
 # FUNCOES AUXILIARES
 
@@ -43,8 +48,8 @@ def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
     velocity = vel(delta_s, delta_t)
     print(("Vel %s: %s m/s") % (name ,velocity))
 
-    Y = [10, 20, 30]
-    Y_2 = [5, 10, 15, 20, 25, 30]
+    Y = s_pareado
+    Y_2 = s_alternado
     X = timeline
     for index, value in enumerate(X):
         if (index == 0):
@@ -56,10 +61,29 @@ def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
     except ValueError:
         plt.plot(X, Y_2, '.', color=plot_color)
 
-    # plt.scatter(X, Y)
-
     positions_plot = [eq_horaria(s[0], i, velocity) for i in range(20)] # s[0] comes from constants    
     plt.plot(time_plot, positions_plot, color = plot_color)
+
+    # CALCULO E PLOT DE ERRO (tempo)
+    # tempo_esperado = []
+    # erro = []
+    # for i in range(len(X)):
+    #     if(len(X) == 3):
+    #         t = eq_horario_tempo(s[0], Y[i], velocity)
+    #     else:
+    #         t = eq_horario_tempo(s[0], Y_2[i], velocity)
+    #     tempo_esperado.append(t)
+    # for i in range(len(tempo_esperado)):
+    #     erro.append(tempo_esperado[i] - X[i])
+    # if(len(X) == 3):
+    #     plt.plot(Y, erro, color = plot_color)
+    # else:
+    #     plt.plot(Y_2, erro, color = plot_color)
+    # setup_and_save_plot(['Erro'],
+    #                     "{} - Erro MU: Experimental x Teorico".format(name),
+    #                     "Erro-MU-Plot-{}.png".format(name),
+    #                     xlabel='Espaco (m)', ylabel='Tempo(s)')
+
     #print_s_t(positions_plot) #para printar s(t) apenas descomentar
 
 # adiciona informacoes ao plot e salva em um arquivo
