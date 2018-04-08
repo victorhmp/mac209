@@ -61,10 +61,10 @@ def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
     except ValueError:
         plt.plot(X, Y_2, '.', color=plot_color)
 
-    positions_plot = [eq_horaria(s[0], i, velocity) for i in range(20)] # s[0] comes from constants    
+    positions_plot = [eq_horaria(s[0], i, velocity) for i in range(20)] # s[0] comes from constants   
     plt.plot(time_plot, positions_plot, color = plot_color)
 
-    # CALCULO E PLOT DE ERRO (tempo)
+    # #CALCULO E PLOT DE ERRO (tempo)
     # tempo_esperado = []
     # erro = []
     # for i in range(len(X)):
@@ -84,7 +84,7 @@ def calc_vel_and_plot(dataset, coord_x, coord_y, name, plot_color):
     #                     "Erro-MU-Plot-{}.png".format(name),
     #                     xlabel='Espaco (m)', ylabel='Tempo(s)')
 
-    #print_s_t(positions_plot) #para printar s(t) apenas descomentar
+    # print_s_t(positions_plot) #para printar s(t) apenas descomentar
 
 # adiciona informacoes ao plot e salva em um arquivo
 def setup_and_save_plot(legend, title, filename, xlabel="Tempo (s)", ylabel="Espaco (m)"):
